@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut } from 'firebase/auth';
+import { getAuth, onAuthStateChanged, GoogleAuthProvider, signInWithPopup, signOut as firebaseSignOut, createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 import { getFirestore, doc, setDoc } from 'firebase/firestore';
 import { firebaseApp } from '../services/firebase';
 
@@ -11,6 +11,28 @@ export const useAuthStore = defineStore('auth', {
     isAuthenticated: (state) => !!state.user,
   },
   actions: {
+    async loginWithEmail(email: string, password: string) {
+      const auth = getAuth(firebaseApp);
+
+      try {
+        const result = await signInWithEmailAndPassword(auth, email, password);
+        this.user = result.user;
+
+      } catch (error) {
+        console.error('Email login failed:', error);
+      }
+    },
+    async signupWithEmail(email: string, password: string) {
+      const auth = getAuth(firebaseApp);
+
+      try {
+        const result = await createUserWithEmailAndPassword(auth, email, password);
+        this.user = result.user;
+
+      } catch (error) {
+        console.error('Email signup failed:', error);
+      }
+    },
     async signInWithGoogle() {
       const auth = getAuth(firebaseApp);
       const provider = new GoogleAuthProvider();
