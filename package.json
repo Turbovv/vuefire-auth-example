@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "firebase": "^10.8.1",
     "radix-vue": "^1.4.9",
     "vue": "^3.4.19"
   },
