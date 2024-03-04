@@ -1,13 +1,12 @@
 import { initializeApp } from 'firebase/app';
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCHnCHV0fa7TPC1uu8mpEgxuZijL7nETgw",
-    authDomain: "vuefire-auth-4a691.firebaseapp.com",
-    databaseURL: "https://vuefire-auth-4a691-default-rtdb.firebaseio.com",
-    projectId: "vuefire-auth-4a691",
-    storageBucket: "vuefire-auth-4a691.appspot.com",
-    messagingSenderId: "424319876474",
-    appId: "1:424319876474:web:7b2264c169e15f0c182ac3",
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID
 };
 
 const firebaseApp = initializeApp(firebaseConfig);
